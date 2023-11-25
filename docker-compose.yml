@@ -1,0 +1,23 @@
+version: '3'
+services:
+  node1:
+    build: ./app
+    expose: [80]
+
+  node2:
+    build: ./app
+    expose: [80]
+
+  node3:
+    build: ./app
+    expose: [80]
+
+
+  loadbalance:
+    build: ./loadbalance
+    ports:
+      - "80:80"
+    depends_on:
+      - node1
+      - node2
+      - node3
